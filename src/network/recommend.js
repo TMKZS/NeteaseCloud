@@ -32,9 +32,12 @@ export function getNewsong(){
   })
 }
 
-// export function getSongUrl(id){
-//   return request({
-//     url: '/song/url',
-//     params: id
-//   })
-// }
+export function getSearch(id){
+  return request({
+    url:"/search",
+    params:{
+      keywords:id
+    }
+  })
+
+}

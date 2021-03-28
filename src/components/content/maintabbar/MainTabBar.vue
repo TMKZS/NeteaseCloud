@@ -10,12 +10,12 @@
         <a class="a" href="https://music.163.com/#/download"><main-bar-item class="item-l">下载客户端</main-bar-item></a>
         <main-bar-item class="item-r">
           <form action="" class="form">
-            
-            <input class="search"  type="text" placeholder="音乐/视频/电台/用户">
+            <input class="search"  type="text" v-model="search_val" placeholder="音乐/视频/电台/用户">
+            <img @click="SearchSong" class="search_img" src="~assets/img/search.png" alt="">
           </form>
         </main-bar-item>
         <!-- <main-bar-item class="item-r">创作者中心</main-bar-item> -->
-        <main-bar-item class="item-r">登录</main-bar-item>
+        <main-bar-item class="item-r"><div @click="Login">登录</div></main-bar-item>
       </main-bar>
     </div>
 </template>
@@ -24,6 +24,8 @@
 import MainBar from 'components/common/mainbar/MainBar'
 import MainBarItem from 'components/common/mainbar/MainBarItem'
 
+import {getSearch} from 'network/recommend'
+
 import 'assets/img/font/iconfont.css'
 
 
@@ -31,6 +33,7 @@ export default {
   name:'MainTabBar',
   data () {
     return {
+      search_val:""
     };
   },
 
@@ -41,17 +44,42 @@ export default {
 
   computed: {},
 
+  // watch: {
+  //   search_val(){
+  //     this.searchPlace()
+  //   }
+  // },
 
-  methods: {}
+  methods: {
+    // searchPlace() {
+    //   getSearch(this.search_val).then(res => {
+    //     console.log(res)
+    //   })
+    //   console.log(this.search_val)
+    // },
+    SearchSong(){
+      this.$router.push({
+        path:"/Search",
+        query:{
+          keyword: this.search_val
+        }
+      })
+      // window.location.reload()
+    },
+    Login(){
+      this.$router.push("/login")
+    }
+  }
 }
 
 </script>
 <style scoped>
   .main-tab-bar{
-    /* display: flex; */
+    display: flex;
     margin: 0 150px;
     /* font-size: 12px; */
     color: #ccc;
+    box-sizing: border-box;
     
   }
   .bgc{
@@ -73,10 +101,10 @@ export default {
     border-radius: 32px;
     width: 158px;
     height: 32px;
-  }
-  .img{
-    width: 10px;
-    height: 10px;
+    margin-left: 5px;
+    background-color: #eee;
+    outline: none;
+    border: none;
   }
   .a{
     text-decoration:none;
@@ -84,4 +112,9 @@ export default {
     margin-right: 50px;
   }
 
+  .search_img {
+    width: 10px;
+    height: 10px;
+    margin-left: -25px;
+  }
 </style>

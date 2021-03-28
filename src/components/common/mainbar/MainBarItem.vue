@@ -28,6 +28,7 @@ export default {
 <style scoped>
   .nav-bar-item {
     flex: 1;
+    /* display: flex; */
     text-align: center;
   }
 </style>

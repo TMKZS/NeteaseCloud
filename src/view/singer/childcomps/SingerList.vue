@@ -3,20 +3,26 @@
   <div class="wrap">
     <div class="container">
       <div class="word">
-        <span v-for="(item, index) in areas">
+        <span v-for="(item, index) in areas"
+        :class="{active: index===areasIndex}"
+        @click="itemClick1(index)">
           {{item.content}}
         </span>
       </div>  
-      <div class="word">
-        <span v-for="(item, index) in types">
+      <!-- <div class="word">
+        <span v-for="(item, index) in types"
+        :class="{active: index===typesIndex}"
+        @click="itemClick2(index)">
           {{item.content}}
         </span>
-      </div>
-      <div class="word">
-        <span v-for="(item, index) in Fnames">
+      </div> -->
+      <!-- <div class="word">
+        <span v-for="(item, index) in Fnames"
+        :class="{active: index===FnamesIndex}"
+        @click="itemClick3(index)">
           {{item.content}}
         </span>
-      </div>
+      </div> -->
     </div>  
     <!-- 组件 -->
     <div class="f-info">
@@ -31,15 +37,21 @@
 <script>
 import SingerListItem from "./SingerListItem" 
 
-import {getSinger , areas, types, Fnames} from "network/singer"
+import {getSinger , areas, 
+  // types, 
+  // Fnames
+} from "network/singer"
 export default {
   name:'SingerList',
   data () {
     return {
       singer:[],
       areas,
-      types,
-      Fnames
+      // types,
+      // Fnames,
+      areasIndex: 0,
+      // typesIndex: 0,
+      // FnamesIndex: 0
     };
   },
 
@@ -50,7 +62,12 @@ export default {
   computed: {},
 
   created(){
-    this.getSinger()
+    this.getSinger("-1");
+    this.getSinger("7");
+    this.getSinger("96");
+    this.getSinger("8");
+    this.getSinger("16");
+    this.getSinger("0");
 
   },
 
@@ -62,6 +79,16 @@ export default {
       })
     },
 
+    //按钮点击事件
+    itemClick1(index){
+      this.areasIndex = index
+    },
+    // itemClick2(index){
+    //   this.typesIndex = index
+    // },
+    // itemClick3(index){
+    //   this.FnamesIndex = index
+    // }
   }
 }
 
@@ -86,5 +113,10 @@ export default {
 
   .word span {
     margin-left: 30px;
+  }
+  .active {
+    /* color: #ffb3bf; */
+    color: red;
+    border-bottom: 2px solid #ffb3bf;
   }
 </style>
