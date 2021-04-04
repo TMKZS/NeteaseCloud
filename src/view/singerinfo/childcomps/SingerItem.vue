@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="wrop">
+  <div class="wrop" @click="Click">
     <div class="container">
       <tr valign="middle">
         <th class="index">{{addIndex(index)}}</th>
@@ -16,11 +16,17 @@
 </template>
 
 <script>
+import {getPlay} from "network/play"
 
 export default {
   name:'SingerItem',
   data () {
     return {
+      id: this.info.id,
+      img: null,
+      url: null,
+      songer: null,
+      songname: null
     };
   },
   props: {
@@ -44,7 +50,22 @@ export default {
       }else {
         return "0"+(index + 1)
       }
-    }
+    },
+    //获取url
+    Click(){
+      getPlay(this.id).then(res => {
+        this.img = this.info.al.picUrl
+        this.songer = this.info.ar[0].name
+        this.songname = this.info.name
+        this.url = res.data.data[0].url
+        // console.log(this.img)
+        // 向Vuex传递img
+        this.$store.commit('getImg',this.img)
+        this.$store.commit('getUrl',this.url)
+        this.$store.commit('getSonger',this.songer)
+        this.$store.commit('getSongName',this.songname)
+      })
+    }  
   }
 }
 

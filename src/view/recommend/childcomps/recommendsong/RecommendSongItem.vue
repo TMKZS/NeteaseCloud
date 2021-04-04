@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="item ">
+  <div class="item" @click="Click">
     <div class="song_wrap f-flex">
       <div class="songImg s-flex">
         
@@ -20,12 +20,17 @@
 
 <script> 
 // import getSongUrl from "network/recommend"
+import {getPlay} from "network/play"
 export default {
   name:'RecommendSongItem',
   data () {
-    return {
-      
-      id: this.songInfo.id
+    return {  
+      id: this.songInfo.id,
+      img: null,
+      url: null,
+      songer: null,
+      songname: null,
+      playState:false
     };
   },
   props: {
@@ -47,10 +52,20 @@ export default {
   },
 
   methods: {
-    
-
-   
-    
+    Click(){
+      getPlay(this.id).then(res => {
+        this.img = this.songInfo.picUrl
+        this.songer = this.songInfo.song.artists[0].name
+        this.songname = this.songInfo.name
+        this.url = res.data.data[0].url
+        // console.log(this.url)
+        // 向Vuex传递img
+        this.$store.commit('getImg',this.img)
+        this.$store.commit('getUrl',this.url)
+        this.$store.commit('getSonger',this.songer)
+        this.$store.commit('getSongName',this.songname)
+      })
+    }   
   }
 }
 
@@ -85,11 +100,4 @@ export default {
   .s-flex p{
     vertical-align: middle;
   }
-
-
-  .end {
-    /* line-height: 100px; */
-  }
-
- 
 </style>

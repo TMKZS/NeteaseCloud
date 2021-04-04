@@ -38,7 +38,7 @@ export default {
           id: this.info.id
         }
       })
-    }
+    },
   }
 }
 

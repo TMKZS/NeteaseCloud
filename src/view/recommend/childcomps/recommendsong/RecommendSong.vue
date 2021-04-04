@@ -6,6 +6,7 @@
     v-for= "(item, index) in newsong" 
     :songInfo= "item" 
     :key="index"
+    
     ></recommend-song-item>
   </div>
 </template>
@@ -52,13 +53,4 @@ export default {
     align-items:center;
     padding: 0 50px;
 }
-
-  .song-list {  
-    /* margin: 0 40px; */
-    /* width: 10000px; */
-  }
- 
-  .f-song{
-
-  }
 </style>

@@ -84,7 +84,4 @@ export default {
     font-weight: bold;
     
   }
-  .song {
-    /* display: flex; */
-  }
 </style>
