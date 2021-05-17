@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div>
+  <div class="heg">
     <chart-list></chart-list>
   </div>
 </template>
@@ -28,4 +28,7 @@ export default {
 
 </script>
 <style scoped>
+  .heg{
+    height: 1200px;
+  }
 </style>

@@ -2,7 +2,7 @@
 <template>
   <div class="wrop">
     <div class="SingerList" @click="itemClick">
-      <img :src="info.img1v1Url" alt="">
+      <img :src="info.picUrl" alt="">
       <p>{{info.name}}</p>
     </div>
   </div>
@@ -25,9 +25,9 @@ export default {
 
   computed: {},
 
-  // created(){
-  //   console.log(this.info)
-  // },
+  created(){
+    console.log(this.info)
+  },
 
   methods: {
     itemClick(){

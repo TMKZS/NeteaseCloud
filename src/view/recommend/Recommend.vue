@@ -1,12 +1,15 @@
 <!--  -->
 <template>
   <div>
-    <recommend-swiper class="swiper" :banners= "banners"/>
-    <div class="song-list">
-      <span>推荐歌单</span>
+    <div class="heg">
+      <recommend-swiper class="swiper" :banners= "banners"/>
+      <div class="song-list">
+        <span>推荐歌单</span>
+      </div>
+      <popular :playlists= "playlists"/>
+      <recommend-song class="song" :newsong= "newsong"></recommend-song>
     </div>
-    <popular :playlists= "playlists"/>
-    <recommend-song class="song" :newsong= "newsong"></recommend-song>
+    
 
     
   </div>
@@ -83,5 +86,8 @@ export default {
     margin-left: 100px;
     font-weight: bold;
     
+  }
+  .heg {
+    height: 1700px;
   }
 </style>

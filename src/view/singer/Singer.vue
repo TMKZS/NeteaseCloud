@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div>
+  <div class="beg">
     <singer-list></singer-list>
   </div>
 </template>
@@ -26,4 +26,7 @@ export default {
 
 </script>
 <style scoped>
+  .beg {
+    height: 1100px;
+  }
 </style>

@@ -43,7 +43,7 @@ export default {
 <style scoped>
   .f-song {
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
     overflow: auto;
     box-sizing: border-box;
     padding-top: 45px; 

@@ -1,8 +1,12 @@
 import {request} from "./request"
 
-export function getSinger(){
+export function getSinger(area){
   return request({
-    url: "/artist/list"
+    url: "/artist/list",
+    params: {
+      type: -1,
+      area
+    }
   })
 }
 

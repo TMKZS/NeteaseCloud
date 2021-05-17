@@ -2,7 +2,9 @@
 <template>
   <div class="f-list">
     <div>
-      <p v-for="(pop, index) in playtype">{{pop.content}}</p>
+      <!-- <p v-for="(pop, index) in playtype" 
+      :class="{active: index === activeIndex}"
+      @click="change(index)">{{pop.content}}</p> -->
     </div>
     
       <play-sheet-item
@@ -25,7 +27,8 @@ export default {
   data () {
     return {
       playlists: [],
-      playtype
+      playtype,
+      activeIndex: 0
     };
   },
 
@@ -46,6 +49,10 @@ export default {
         this.playlists = res.data.playlists
         console.log(this.playtype)
       })
+    },
+
+    change(index) {
+      this.activeIndex = index
     }
   }
 }
@@ -61,5 +68,10 @@ export default {
     height: 100%;
     box-sizing: border-box;
     margin: 50px 0;
+  }
+  .active {
+    /* color: #ffb3bf; */
+    color: red;
+    border-bottom: 2px solid #ffb3bf;
   }
 </style>

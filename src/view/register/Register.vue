@@ -3,14 +3,19 @@
   <div class="bg">
     <div class="container">
       <div>
-        <input class="inp1" type="text" placeholder="手机号" v-model="phone">
+        <input class="inp1" type="text" placeholder="呢称" v-model="nickname">
+      </div>
+      <div>
+        <input class="inp2" type="text" placeholder="手机号" v-model="phone" >
         <button class="btn1" @click="send" ref = "addNum">获取验证码</button>
+      </div>
+      <div>
+        <input class="inp2" type="password" placeholder="密码" v-model="password">
       </div>
       <div>
         <input class="inp2" type="text" placeholder="验证码" v-model="captcha">
       </div>
       <div>
-        <button class="btn2" @click="signIn">登录</button>
         <button class="btn3" @click="reg">注册</button>
       </div>
 
@@ -19,44 +24,31 @@
 </template>
 
 <script>
-import { getLogin, getTest } from "network/login"
-
+import { getLogin } from "network/login"
+import { getRegister } from "network/register"
 export default {
-  name:'Login',
+  name:'Register',
   data () {
     return {
-      phone: "",
-      captcha: "",
-     
+      nickname: '',
+      phone: '',
+      password: '',
+      captcha: '',
     };
   },
 
   components: {},
 
-  computed: {
-   
-  },
+  computed: {},
 
-  watch:{
-   
-  },
-
-  created(){
-
-  },
 
   methods: {
-    //跳转
-    reg() {
-      this.$router.push("/register")
-    },
+    send() {
 
-    send(){
       if(!/^1[345678]\d{9}$/.test(this.phone)){ 
         alert("手机号码有误，请重填");  
         return false; 
-    } 
-
+    }
       let time = 60;
       let timer = setInterval(() => {
         if (time == 0) {
@@ -77,39 +69,33 @@ export default {
           time--;
         }
       }, 1000);
-
+      
 
       return getLogin(this.phone).then(res => {
-        // console.log(res)
+        console.log(res)
       })
-
     },
-    signIn(){
+    reg() {
+      //这个地方用return 会出现505报错
 
       if(!/^1[345678]\d{9}$/.test(this.phone)){ 
         alert("手机号码有误，请重填");  
         return false; 
     } 
 
-      getTest(this.phone, this.captcha).then(res => {
-
-        localStorage.setItem("wyy_login", true);
-        alert('登录成功')
-        this.$router.push("recommend");
-        console.log(res)
-      }).catch(res => {
-        alert('验证码有误，请重新登录')
-        // console.log("失败")
-      })
-       
-    }
     
+      return getRegister(this.captcha, this.phone, this.password, this.nickname,).then(res => {
+        this.$router.push('login')
+      }).catch(res => {
+        console.log('失败')
+      })
+    }
   }
 }
 
 </script>
 <style scoped>
-  .bg {
+.bg {
     box-sizing: border-box;
     /* background-color: #f4f4f4; */
   }
@@ -142,7 +128,10 @@ export default {
 
   .btn3 {
     border:none;
-    color: blue;
-    margin-left: 35px;
+    width: 300px;
+    margin-left: 30px;
+    margin-top: 20px;
+    color: green;
+    
   }
 </style>

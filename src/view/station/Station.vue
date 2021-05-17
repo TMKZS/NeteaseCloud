@@ -31,5 +31,6 @@ export default {
 <style scoped>
   .bgc {
     background-color: #f5f5f5;
+    /* height: 2000px; */
   }
 </style>

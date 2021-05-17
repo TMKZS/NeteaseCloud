@@ -11,6 +11,7 @@ const Singerinfo = () => import('../view/singerinfo/SingerInfo')
 const Radio = () => import('../view/radio/Radio')
 const Search =() => import('../components/content/maintabbar/childcomps/Search')
 const Login = () => import('../view/login/Login')
+const Register = () => import('../view/register/Register')
 
 //安装插件 
 Vue.use(VueRouter)
@@ -59,6 +60,10 @@ const routes = [
   {
     path: '/login',
     component: Login
+  },
+  {
+    path: '/register',
+    component: Register
   },
 ]
 

@@ -8,3 +8,13 @@ export function getLogin(code){
     }
   })
 }
+
+export function getTest(phone, captcha){
+  return request({
+    url:"/captcha/verify",
+    params: {
+      phone,
+      captcha
+    }
+  })
+}

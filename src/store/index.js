@@ -10,7 +10,8 @@ const store = new Vuex.Store({
     songer: null,
     songname: null,
     listSong: [],
-    playState: false
+    playState: false,
+    
   },
   mutations: {
     getImg(state,n){
@@ -25,7 +26,11 @@ const store = new Vuex.Store({
     },
     getSongName(state,n){
       state.songname = n
-    },    
+    },  
+    getPlayList(state,n){
+      state.playList = n;
+      console.log(this.playList)
+    }  
   },
   actions: {
 

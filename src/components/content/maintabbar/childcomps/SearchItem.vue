@@ -2,7 +2,7 @@
 <template>
   <div>
     <div class="wrop">
-      <div class="container">
+      <div class="container" @click="Click">
         <tr valign="middle">
           <th class="index">{{addIndex(index)}}</th>
           <th class="pic">
@@ -18,10 +18,19 @@
 </template>
 
 <script>
+import {getPlay} from "network/play"
+
 export default {
   name:'SearchItem',
   data () {
     return {
+      //播放相关数据
+      id: this.info.id,
+      img: null,
+      url: null,
+      songer: null,
+      songname: null,
+      playState: false,
     };
   },
   props: {
@@ -37,6 +46,9 @@ export default {
 
   computed: {},
 
+  created(){
+    console.log(this.info)
+  },
 
   methods: {
     addIndex(index){
@@ -45,6 +57,21 @@ export default {
       }else {
         return "0"+(index + 1)
       }
+    },
+
+    Click() {
+      getPlay(this.id).then(res => {
+        // console.log(res)
+        this.img = this.info.picUrl
+        this.songer = this.info.artists[0].name
+        this.songname = this.info.name
+        this.url = res.data.data[0].url;
+
+        this.$store.commit('getImg',this.img)
+        this.$store.commit('getUrl',this.url)
+        this.$store.commit('getSonger',this.songer)
+        this.$store.commit('getSongName',this.songname)
+      })
     }
   }
 }

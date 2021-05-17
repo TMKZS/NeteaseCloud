@@ -30,7 +30,8 @@ export default {
       url: null,
       songer: null,
       songname: null,
-      playState:false
+      playState: false,
+      // playList: [],
     };
   },
   props: {
@@ -52,18 +53,29 @@ export default {
   },
 
   methods: {
+
     Click(){
+      // let playList = [];
       getPlay(this.id).then(res => {
+        
         this.img = this.songInfo.picUrl
         this.songer = this.songInfo.song.artists[0].name
         this.songname = this.songInfo.name
-        this.url = res.data.data[0].url
+        this.url = res.data.data[0].url;
+        
+        // for(let playList = [],i=1; i < playList.length; i++) {
+        //   playList.push([this.img, this.songname, this.songer])
+        //   console.log(playList)  
+        // }
+        
+
         // console.log(this.url)
         // 向Vuex传递img
         this.$store.commit('getImg',this.img)
         this.$store.commit('getUrl',this.url)
         this.$store.commit('getSonger',this.songer)
         this.$store.commit('getSongName',this.songname)
+        // this.$store.commit('getPlayList',this.playList)
       })
     }   
   }

@@ -46,7 +46,7 @@ export default {
   },
 
   components: {
-    ChartListItem
+    ChartListItem,
   },
 
   computed: {},

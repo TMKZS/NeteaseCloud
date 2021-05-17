@@ -1,7 +1,7 @@
 <!--  -->
 <template>
   <div>
-    <detail-list :Info="recommendsong"/>
+    <detail-list :Info="recommendsong" :comWord="comWord"/>
     <!-- {{$route.query.id}} -->
   </div>
 </template>
@@ -10,12 +10,15 @@
 import DetailList from "./childcomps/DetailList"  
 
 import { getDetailRecommend } from "network/detail"
+import { getComment } from "network/comment"
+
 export default {
   name:'Detail',
   data () {
     return {
       id: null,
-      recommendsong:{}
+      recommendsong:{},
+      comWord: []
     };
   },
 
@@ -28,11 +31,17 @@ export default {
   created(){
     this.id = this.$route.query.id
     getDetailRecommend(this.id).then(res => {
-      console.log(res);
+      // console.log(res);
       this.recommendsong = res.data.playlist;
       // console.log(this.recommendsong.playlist);
 
     })
+
+    getComment(this.id).then(res => {
+      this.comWord = res.data.comments
+      console.log(this.comWord)
+    })
+    
     
   },
 

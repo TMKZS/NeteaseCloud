@@ -15,7 +15,12 @@
           </form>
         </main-bar-item>
         <!-- <main-bar-item class="item-r">创作者中心</main-bar-item> -->
-        <main-bar-item class="item-r"><div @click="Login">登录</div></main-bar-item>
+        
+        <main-bar-item class="item-r">
+          <div class="log">
+            <div class="img"><img :src="imgURL" alt=""></div>
+            <div @click="Login">登录</div>
+          </div></main-bar-item>
       </main-bar>
     </div>
 </template>
@@ -33,7 +38,8 @@ export default {
   name:'MainTabBar',
   data () {
     return {
-      search_val:""
+      search_val: "",
+      imgURL: ""
     };
   },
 
@@ -43,6 +49,12 @@ export default {
   },
 
   computed: {},
+  
+  created(){
+    if(localStorage.getItem("wyy_login")){
+        imgURL = "~assets/img/123.jpg"
+      }
+  },
 
   // watch: {
   //   search_val(){
@@ -68,6 +80,10 @@ export default {
     },
     Login(){
       this.$router.push("/login")
+    },
+
+    getimg(){
+      
     }
   }
 }
@@ -86,15 +102,17 @@ export default {
     height: 70px;
     background-color: #333;
     line-height: 70px;
-    
+    /* width: 100vw; */
     
   }
   .item-l{
-    margin-right: 50px;
+    /* margin-right: 50px; 影响相关的导航栏元素的排列 */
+    /* margin-right: 50px; */
     font-size: 14px;
   }
   .item-r{
-    margin-left: 50px;
+    /* margin-right: 50px; 影响相关的导航栏元素的排列 */
+    /* margin-left: 50px; */
     font-size: 12px;
   }
   .search{
@@ -116,5 +134,11 @@ export default {
     width: 10px;
     height: 10px;
     margin-left: -25px;
+  }
+  .img{
+    padding-left: 20px;
+  }
+  .log{
+    display: flex;
   }
 </style>

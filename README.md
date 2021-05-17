@@ -1,5 +1,10 @@
 # dxmusic
 
+## 进入NeteaseCloudMusicApi目录下输入下面的命令，启动网易云后台数据
+```
+node app.js
+```
+
 ## Project setup
 ```
 npm install

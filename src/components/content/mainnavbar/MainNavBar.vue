@@ -5,7 +5,7 @@
       <nav-bar-item class="nav-bar-item" path= "/recommend">推荐</nav-bar-item>
       <nav-bar-item class="nav-bar-item" path= "/chart">排行榜</nav-bar-item>
       <nav-bar-item class="nav-bar-item" path= "/playlist">歌单</nav-bar-item>
-      <nav-bar-item class="nav-bar-item" path= "/station">主播电台</nav-bar-item>
+      <!-- <nav-bar-item class="nav-bar-item" path= "/station">主播电台</nav-bar-item> -->
       <nav-bar-item class="nav-bar-item" path= "/singer">歌手</nav-bar-item>
       <!-- <nav-bar-item class="nav-bar-item" path= "/newdisc">新碟上架</nav-bar-item> -->
     </nav-bar>
